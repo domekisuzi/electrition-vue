@@ -2,6 +2,7 @@
     @2022/12/7
 -->
 <template>
+
   <div class="header" aria-label="A complete example of page header"  >
     <el-page-header @back="onBack">
       <template #breadcrumb>
@@ -29,19 +30,24 @@
             Sub title
           </span>
           <el-tag>Default</el-tag>
+
         </div>
       </template>
+
       <template #extra>
         <div class="flex items-center">
           <el-button>Print</el-button>
           <el-button type="primary" class="ml-2">Edit</el-button>
+          <el-switch   v-model="theme" @click="toggleDark()"/>
+
         </div>
-      </template>
+         </template>
 
       <el-descriptions :column="3" size="small" class="mt-4">
         <el-descriptions-item label="Username"
         >kooriookami</el-descriptions-item
         >
+
         <el-descriptions-item label="Telephone"
         >18100000000</el-descriptions-item
         >
@@ -63,6 +69,11 @@
 import { ElNotification as notify } from 'element-plus'
 import {onBeforeMount, onMounted} from "vue";
 import {defineEmits} from "vue";
+import {useDark, useToggle} from "@vueuse/core";
+const  isDark = useDark()
+const  toggleDark =   useToggle(isDark)
+
+const  theme = ref(false)
 
 const onBack = () => {
   notify('Back')
@@ -71,15 +82,15 @@ const onBack = () => {
 onMounted(()=>{
 
 
-  console.log(height)
-
   // const  emit  = defineEmits(['height'])
   // emit('height', )
 })
 </script>
 
 <style scoped>
-
+.el-switch{
+  height: 20px;
+}
 
 
 </style>
