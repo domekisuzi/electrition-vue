@@ -12,6 +12,12 @@ const routes =
             name: "Home",
             // component: () => import("../views/Home/index.vue"),
         },
+        {
+            path: "/menu",
+            alias:'/',
+            name: "Menu ",
+            component: () => import("../layout/index.vue"),
+        },
         //自我介绍页面
         // {
         //     path: "/about",
