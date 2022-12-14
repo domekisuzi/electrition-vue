@@ -21,8 +21,45 @@ import MenuBackground from '../../components/MenuBackground.vue'
     window._AMapSecurityConfig = {
       securityJsCode:'b451a322f96a0b3b42a0d9edb097b314',
     }
+
+
+    //TODO("是否需要优化?算了，先暂时不动它")
     window.onLoad  = function(){
-      var map = new AMap.Map('weather-container');
+      var map = new AMap.Map('weather-container') ;
+
+
+      var position = [  93.530986,  42.736553]
+      map.setCenter(position)
+      map.on('click',function (ev) {
+        console.log(ev.lnglat)
+        AMap.plugin('AMap.Geocoder', function() {
+          var geocoder = new AMap.Geocoder({
+            // city 指定进行编码查询的城市，支持传入城市名、adcode 和 citycode
+          })
+          //
+          // var lnglat =   [  93.530986,  42.736553]
+          var lnglat = ev.lnglat
+          geocoder.getAddress(lnglat, function(status, result) {
+            if (status === 'complete' && result.info === 'OK') {
+              console.log(result)
+
+              //----------------  可行
+              AMap.plugin('AMap.Weather', function() {
+                //创建天气查询实例
+                var weather = new AMap.Weather();
+
+                //执行实时天气信息查询
+                weather.getLive(result.regeocode.addressComponent.adcode, function(err, data) {
+                  console.log(err, data);
+                });
+              });
+              //----------------
+            }
+          })
+        })
+      })
+
+      // map.off('click', clickHandler)
     }
     var url = 'https://webapi.amap.com/maps?v=1.4.15&key=c25532a19335e2227db2f56343185e16&callback=onLoad';
     var jsapi = document.createElement('script');

@@ -60,7 +60,6 @@
     <MenuBackground>
       <div class="card"><span>评价结果</span>
         <span>评估总分</span>
-
         <el-input disabled v-model="input"> </el-input>
         <span>评价结果</span>
         <el-input disabled v-model="input"></el-input>
@@ -110,6 +109,8 @@ span {
   align-items: center;
   flex-direction: column;
 }
+
+
 .bottom{
   display: flex;
 }

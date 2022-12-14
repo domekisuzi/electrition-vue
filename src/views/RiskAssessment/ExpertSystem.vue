@@ -3,6 +3,9 @@
 -->
 <template>
   <div class="top">
+    <el-button>
+      以图表展示
+    </el-button>
     <MenuBackground>
       <div class="card"><span>一级指标</span>
         <el-table border :data="tableData" table-layout="auto">
@@ -46,6 +49,7 @@
         <el-button>评价矩阵</el-button>
       </div>
     </MenuBackground>
+
     <MenuBackground>
       <div class="card"><span>供电能力</span>
         <el-table border :data="tableData" style="width: 100%">
@@ -56,9 +60,7 @@
         <el-button>评价矩阵</el-button>
       </div>
     </MenuBackground>
-
   </div>
-
 
 </template>
 
