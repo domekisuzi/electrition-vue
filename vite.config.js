@@ -20,11 +20,20 @@ export default defineConfig({
       //path，随便写，分为本地及远程模式
       '/path': {
         target: 'http://domekisuzi.fun:7777',
+
         // target: 'http://127.0.0.1:7777',
         changeOrigin: true, //开启代理允许跨域
         rewrite: path => {
           // console.log(path + "替换前");
           return path.replace(/^\/path/, '')//设置重写的路径}
+        }
+      },
+      '/weather': {
+        target: 'http://api.qingyunke.com',
+        changeOrigin: true, //开启代理允许跨域
+        rewrite: path => {
+          // console.log(path + "替换前");
+          return path.replace(/^\/weather/, '')//设置重写的路径}
         }
       }
     }

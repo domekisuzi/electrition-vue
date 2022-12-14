@@ -10,18 +10,34 @@
         </el-aside>
         <el-container class="container">
           <el-header><Header/></el-header>
-          <el-main>Main</el-main>
+          <el-main>
+            <router-view/>
+          </el-main>
         </el-container>
       </el-container>
     </el-container>
 
 </template>
 
-<script setup>
+<script setup >
 import Menu from './Menu/index.vue'
 import Header from './Header/index.vue'
+import {shuo} from "../api/menu.js";
+import {onBeforeMount} from "vue";
+
+onBeforeMount(()=>{
+  // shuo().then(
+  //     res=>{
+  //       console.log(res)
+  //     })
+
+
+})
+
+
 // const headerHeight =  ref("200px")
 </script>
+
 
 <style scoped>
 .app-wrapper{
@@ -51,4 +67,13 @@ import Header from './Header/index.vue'
   display: flex;
   flex-direction: column;
 }
+
+.el-aside {
+  transition: width 0.15s;
+  -webkit-transition: width 0.15s;
+  -moz-transition: width 0.15s;
+  -webkit-transition: width 0.15s;
+  -o-transition: width 0.15s;
+}
+
 </style>

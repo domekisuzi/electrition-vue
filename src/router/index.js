@@ -14,10 +14,51 @@ const routes =
         },
         {
             path: "/menu",
-            alias:'/',
+
             name: "Menu ",
             component: () => import("../layout/index.vue"),
+            children:[
+                {
+                    path: "usermanagement",
+
+                    component: () => import("../views/AccountManagement/UserManagement.vue"),
+                },
+                {
+                    path: "usersetting",
+
+                    component: () => import("../views/AccountManagement/UserSetting.vue"),
+                },
+                {
+                  path: "currentdata",
+                    component: () => import("../views/DataQuery/CurrentData.vue"),
+                },
+                {
+                    path: "historydata",
+                    component: () => import("../views/DataQuery/HistoryData.vue"),
+                },
+                {
+                    path: "liveweather",
+                    component: () => import("../views/RiskAlert/LiveWeather.vue"),
+                },
+                {
+                    path: "assessment",
+                    component: () => import("../views/RiskAssessment/EvaluationSystem.vue"),
+                },
+                {
+                    path: "expert",
+                    component: () => import("../views/RiskAssessment/ExpertSystem.vue"),
+                },
+            ]
         },
+
+
+        {
+            path: "/bigdata",
+
+            name: "BigData",
+            component: () => import("../pages/bigpage.vue"),
+        },
+
         //自我介绍页面
         // {
         //     path: "/about",

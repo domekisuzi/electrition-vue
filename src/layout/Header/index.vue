@@ -36,9 +36,14 @@
 
       <template #extra>
         <div class="flex items-center">
-          <el-button>Print</el-button>
-          <el-button type="primary" class="ml-2">Edit</el-button>
-          <el-switch   v-model="theme" @click="toggleDark()"/>
+<!--          <el-button>Print</el-button>-->
+<!--          <el-button type="primary" class="ml-2">Edit</el-button>-->
+          <el-switch   v-model="theme" @click="toggleDark()"
+                       style=" --el-switch-off-color:#2c2929 ;--el-switch-on-color: #ada9a9;"
+                       inline-prompt
+                       :active-icon="Sunny"
+                       :inactive-icon="Moon"
+          />
 
         </div>
          </template>
@@ -69,6 +74,7 @@
 import { ElNotification as notify } from 'element-plus'
 import {onBeforeMount, onMounted} from "vue";
 import {defineEmits} from "vue";
+import { Sunny,Moon } from '@element-plus/icons-vue'
 import {useDark, useToggle} from "@vueuse/core";
 const  isDark = useDark()
 const  toggleDark =   useToggle(isDark)
