@@ -5,10 +5,7 @@
 
 </template>
 
-<script>
-export default {
-  name: "HistoryData"
-}
+<script setup>
 </script>
 
 <style scoped>

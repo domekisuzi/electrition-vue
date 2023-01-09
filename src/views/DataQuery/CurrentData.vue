@@ -5,10 +5,7 @@
 
 </template>
 
-<script>
-export default {
-  name: "CurrentData"
-}
+<script setup>
 </script>
 
 <style scoped>

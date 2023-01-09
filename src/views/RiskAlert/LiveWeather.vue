@@ -68,6 +68,7 @@ import MenuBackground from '../../components/MenuBackground.vue'
     document.head.appendChild(jsapi);
   })
 
+
       // onMounted(()=>{
       //   (function(){
       //     var iframe = document.getElementById('weather-container').contentWindow;
