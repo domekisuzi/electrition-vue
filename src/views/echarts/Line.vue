@@ -25,7 +25,7 @@ let option = {
       fontSize: 14,
       color: 'rgba(255, 255, 255, 1)'
     },
-    data: ['计划量', '完成量' ]
+    data: ['新增风电装置', '新增太阳能装置']
   },
   grid: {
     top: '10%',
@@ -46,11 +46,11 @@ let option = {
     borderColor: 'transparent',
     formatter: function (params) {
       let colors = ['rgba(124, 124, 191, 1)', 'rgba(233, 195, 116, 1)']
-      let returnData = '<div style="padding: 5px 10px;">'
+      let returnData = '<div id="test1"  style="padding: 5px 10px;">'
       returnData += '<span style="font-family: MicrosoftYaHei; font-size: 14px; color: rgba(210, 221, 249, 1);">' + params[0].axisValue + '</span><br/>'
       for (let i = 0; i < params.length; i++) {
         returnData += '<span style="display:inline-block; width:10px; height:8px; margin-right:5px; border-radius:1px; background-color:' + colors[i] + '"></span>'
-        returnData += '<span style="font-family: MicrosoftYaHei; font-size: 14px; color: ' + colors[i] + '">' + params[i].seriesName + '：</span><span style="font-family: Verdana; font-size: 14px; color: ' + colors[i] + '">' + params[i].value + '</span><span style="display:inline-block; margin-left: 4px; line-height: 10px; font-family: MicrosoftYaHei; font-size: 12px; color: ' + colors[i] + '">车</span><br/>'
+        returnData += '<span style="font-family: MicrosoftYaHei; font-size: 14px; color: ' + colors[i] + '">' + params[i].seriesName + '：</span><span style="font-family: Verdana; font-size: 14px; color: ' + colors[i] + '">' + params[i].value + '</span><span style="display:inline-block; margin-left: 4px; line-height: 10px; font-family: MicrosoftYaHei; font-size: 12px; color: ' + colors[i] + '">度</span><br/>'
       }
       returnData += '</div>'
       return returnData
@@ -77,7 +77,7 @@ let option = {
       alignWithLabel: true,
     },
     boundaryGap: false,
-    data: ['2021.12.18', '2021.12.19', '2021.12.20', '2021.12.21', '2021.12.22', '2021.12.23'],
+    data: ['2012', '2013', '2014', '2015', '2016', '2017'],
   },
   yAxis: {
     type: 'value',
@@ -112,7 +112,7 @@ let option = {
   },
   series: [
     {
-      name: '计划量',
+      name: '新增风电装置',
       type: 'line',
       showAllSymbol: true,
       symbol: 'circle',
@@ -151,10 +151,20 @@ let option = {
           shadowBlur: 20,
         },
       },
-      data: [502.84, 205.97, 332.79, 281.55, 398.35, 214.02],
+      data: [1180,
+        1357,
+        2018,
+        3074,
+        1953,
+        1670,
+        2035,
+        2515,
+        7070,
+        4705,
+      ],
     },
     {
-      name: '完成量',
+      name: '新增太阳能装置',
       type: 'line',
       showAllSymbol: true,
       symbol: 'circle',
@@ -193,33 +203,42 @@ let option = {
           shadowBlur: 20,
         },
       },
-      data: [281.55, 398.35, 214.02, 179.55, 289.57, 356.14],
+      data: [200,
+        1095,
+        759,
+        1306,
+        3108,
+        5290,
+        4450,
+        2605,
+        4782,
+        5380
+      ],
     },
   ],
 };
 
 
-onMounted(()=>{
+onMounted(() => {
   initCharts
 
-  window.addEventListener('resize',function (){
+  window.addEventListener('resize', function () {
     myChart.resize()
   })
 })
 
 
-
-const  initCharts = setTimeout(()=>{
-      if(myChart !=null && myChart !=="" && myChart !==undefined){
+const initCharts = setTimeout(() => {
+      if (myChart != null && myChart !== "" && myChart !== undefined) {
         myChart.dispose()
       }
 
-      myChart = echarts.init(document.getElementById('line'),'dark'  );
+      myChart = echarts.init(document.getElementById('line'), 'dark');
       myChart.showLoading();
       myChart.hideLoading();
       myChart.setOption(option);
     }
-    ,2500)
+    , 2500)
 
 </script>
 

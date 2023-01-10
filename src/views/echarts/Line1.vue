@@ -16,10 +16,22 @@ let option = {
   //   text: 'Stacked Line'
   // },
   tooltip: {
-    trigger: 'axis'
+    trigger: 'axis',
+    formatter: function (params) {
+      // let colors = ['rgba(124, 124, 191, 1)', 'rgba(233, 195, 116, 1)']
+      // let colors = ['blue','green','red','orange','blue']
+      let returnData = '<div  style="padding: 0; ">'
+      returnData += '<span style="font-family: MicrosoftYaHei; font-size: 14px; color: rgba(210, 221, 249, 1);">' + params[0].axisValue + '</span><br/>'
+      for (let i = 0; i < params.length; i++) {
+        returnData += '<span style="display:inline-block; width:10px; height:8px; margin-right:5px; border-radius:1px; background-color:' + params[i].color + '"></span>'
+        returnData += '<span style="font-family: MicrosoftYaHei; font-size: 14px; color: ' + params[i].color + '">' + params[i].seriesName + '：</span><span style="font-family: Verdana; font-size: 14px; color: ' +  params[i].color + '">' + params[i].value + '</span><span style="display:inline-block; margin-left: 4px; line-height: 10px; font-family: MicrosoftYaHei; font-size: 12px; color: ' +  params[i].color + '">度</span><br/>'
+      }
+      returnData += '</div>'
+      return returnData
+    }
   },
   legend: {
-    data: ['广州西门子变压器公司', '耐恒（广州）纸品有限公司', '广州斗原钢铁有限公司', '广州璨宇光学有限公司', '佐登妮丝（广州）有限公司']
+    data: ['火电', '风电', '水电', '太阳能发电', '核电']
   },
   grid: {
     left: '3%',
@@ -35,67 +47,91 @@ let option = {
   xAxis: {
     type: 'category',
     boundaryGap: false,
-    data: ['2021-12-20 00:00:00', '2021-12-20 06:00:00', '2021-12-20 12:00:00', '2021-12-20 18:00:00', '2021-12-21 00:00:00', '2021-12-21 06:00:00', '2021-12-21 12:00:00', '2021-12-21 18:00:00', '2021-12-22 00:00:00']
+    data: ['2017', '2018', '2019', '2020', '2021']
   },
   yAxis: {
     type: 'value'
   },
   series: [
     {
-      name: '广州西门子变压器公司',
+      name: '火电',
       type: 'line',
       // stack: 'Total',
-      data: [130, 105, 135, 120, 175, 205, 185, 195, 208],
+      data: [45877,
+        49249,
+        50465,
+        51743,
+        57702,
+      ],
       smooth: true,
     },
     {
-      name: '耐恒（广州）纸品有限公司',
+      name: '风电',
       type: 'line',
       // stack: 'Total',
-      data: [225, 222, 180, 234, 205, 180, 170, 220, 231],
+      data: [3046,
+        3658,
+        4053,
+        4665,
+        5667,
+      ],
       smooth: true,
     },
     {
-      name: '广州斗原钢铁有限公司',
+      name: '水电',
       type: 'line',
       // stack: 'Total',
-      data: [180, 230, 201, 150, 230, 230, 240, 210, 240],
+      data: [1178,
+        1769,
+        2240,
+        2611,
+        1837,
+      ],
       smooth: true,
     },
     {
-      name: '广州璨宇光学有限公司',
+      name: '太阳能发电',
       type: 'line',
       // stack: 'Total',
-      data: [180, 175, 201, 210, 200, 142, 205, 235, 248],
+      data: [11947,
+        12321,
+        13021,
+        13552,
+        11840,
+      ],
       smooth: true,
     },
     {
-      name: '佐登妮丝（广州）有限公司',
+      name: '核电',
       type: 'line',
       // stack: 'Total',
-      data: [235, 250, 238, 252, 260, 245, 235, 235, 230],
+      data: [2481,
+        2950,
+        3487,
+        3662,
+        4075,
+      ],
       smooth: true,
     }
   ]
 };
-onMounted(()=>{
+onMounted(() => {
   initCharts
 
-  window.addEventListener('resize',function (){
+  window.addEventListener('resize', function () {
     myChart.resize()
   })
 })
-const  initCharts = setTimeout(()=>{
-      if(myChart !=null && myChart !=="" && myChart !==undefined){
+const initCharts = setTimeout(() => {
+      if (myChart != null && myChart !== "" && myChart !== undefined) {
         myChart.dispose()
       }
-
-      myChart = echarts.init(document.getElementById('line1'),'dark'  );
+      myChart = echarts.init(document.getElementById('line1'), 'dark');
       myChart.showLoading();
       myChart.hideLoading();
       myChart.setOption(option);
     }
-    ,2500)
+    , 2500)
 
 </script>
 

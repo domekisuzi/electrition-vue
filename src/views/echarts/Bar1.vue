@@ -7,175 +7,114 @@
 
 <script setup>
 
-var data = [1.5, 2.5, 3, 3, 1, 1, 1];
+// var data = [57399,
+//   60228,
+//   64529,
+//   69947,
+//   73269,
+//   76236,
+//   81122,
+// ];
 
 let option = {
-  // backgroundColor: '#0b2848',
   tooltip: {
-    formatter: `
-       ' <div style="overflow:hidden;">
-            <div style="clear:both;width:100%;>
-                <div style="width: '100%'; height: '24px';">
-                    <span style="line-height: 24px; font-size: 18px ;color: #ffffff">当前错误数</span>
-                    <span style="line-height: 24px; font-size: 24px ;color: #2be1ec">{c1}</span>
-                </div>
-            </div>
-        </div>'`,
-    trigger: "axis",
+    trigger: 'axis',
     axisPointer: {
-      type: "none",
-    },
-    backgroundColor : 'rgba(43, 225, 236, 0.2)',
-    borderWidth : 0,
+      type: 'cross',
+      crossStyle: {
+        color: '#999'
+      }
+    }
   },
-  xAxis: {
-    data: ['10月5日', '10月6日', '10月7日', '10月8日', '10月9日', '10月10日', '10月11日'],
-    axisLine: {
-      show: false,
-    },
-    axisTick: {
-      show: false,
-    },
-    axisLabel: {
-      show: true,
-      textStyle: {
-        color: '#2be1ec', //X轴文字颜色
-        fontSize: 16,
-      },
-    },
-    splitArea: {
-      show: false,
-    },
+  toolbox: {
+    feature: {
+      dataView: { show: true, readOnly: false },
+      magicType: { show: true, type: ['line', 'bar'] },
+      restore: { show: true },
+      saveAsImage: { show: true }
+    }
   },
+  legend: {
+    data: ['发电总量', '发电总量', '增速']
+  },
+  xAxis: [
+    {
+      type: 'category',
+      data: [2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+      ],
+      axisPointer: {
+        type: 'shadow'
+      }
+    }
+  ],
   yAxis: [
     {
       type: 'value',
-      nameTextStyle: {
-        color: '#ebf8ac',
-        fontSize: 16,
-      },
-      splitLine: {
-        show: true,
-        lineStyle: {
-          color: 'rgba(43,225,236,0.1)',
-          width: 4,
-        },
-      },
-      axisTick: {
-        show: false,
-      },
-      axisLine: {
-        show: false,
-      },
+      name: '发电总量',
+      min: 0,
+      max: 90000,
+      interval: 10000,
       axisLabel: {
-        show: true,
-        textStyle: {
-          color: '#2be1ec',
-          fontSize: 16,
-        },
-      },
+        formatter: '{value} 亿千瓦'
+      }
     },
     {
       type: 'value',
-      nameTextStyle: {
-        color: '#ebf8ac',
-        fontSize: 16,
-      },
-      position: 'right',
-      splitLine: {
-        show: false,
-      },
-      axisTick: {
-        show: false,
-      },
-      axisLine: {
-        show: false,
-      },
+      name: '增速',
+      min: 0,
+      max: 0.09,
+      interval: 0.01,
       axisLabel: {
-        show: false,
-        formatter: '{value} %', //右侧Y轴文字显示
-        textStyle: {
-          color: 'rgba(250,250,250,0.6)',
-          fontSize: 16,
-        },
-      },
-    },
+        formatter: '{value} %'
+      }
+    }
   ],
   series: [
     {
-      name: '错误数',
-      type: 'line',
-      yAxisIndex: 1, //使用的 y 轴的 index，在单个图表实例中存在多个 y轴的时候有用
-      smooth: true, //平滑曲线显示
-      showAllSymbol: true, //显示所有图形。
-      symbol: 'circle', //标记的图形为实心圆
-      symbolSize: 12, //标记的大小
-      itemStyle: {
-        //折线拐点标志的样式
-        color: '#08feb6',
-        borderColor: '#08feb6',
-        width: 2,
-        shadowColor: '#3D7EEB',
-        shadowBlur: 4,
-      },
-      lineStyle: {
-        color: '#08feb6',
-        width: 2,
-        shadowColor: '#08feb6',
-        shadowBlur: 4,
-      },
-      areaStyle: {
-        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-          {
-            offset: 0,
-            color: 'rgba(61,126,235, 0)',
-          },
-          {
-            offset: 1,
-            color: 'rgba(61,126,235, 0)',
-          },
-        ]),
-      },
-      data: data,
-    },
-    {
-      name: '错误数',
+      name: '发电总量',
       type: 'bar',
-      barWidth: 30,
-      itemStyle: {
-        normal: {
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            {
-              offset: 0,
-              color: 'rgba(43,225,236, 1)',
-            },
-            {
-              offset: 0.5,
-              color: 'rgba(43,225,236, 0.2)',
-            },
-            {
-              offset: 1,
-              color: 'rgba(43,225,236, 0)',
-            },
-          ]),
-          borderColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            {
-              offset: 0,
-              color: 'rgba(43,225,236, 1)',
-            },
-            {
-              offset: 1,
-              color: 'rgba(43,225,236, 0)',
-            },
-          ]),
-          borderWidth: 2,
-        },
+      tooltip: {
+        valueFormatter: function (value) {
+          return value + ' （亿千瓦）';
+        }
       },
-      data: data,
-    },
-  ],
-};
+      data: [
+        57399,
+        60228,
+        64529,
+        69947,
+        73269,
+        76236,
+        81122,
 
+      ]
+    },
+
+    {
+      name: '增速',
+      type: 'line',
+      yAxisIndex: 1,
+      tooltip: {
+        valueFormatter: function (value) {
+          return value + ' %';
+        }
+      },
+      data: [0.049,
+        0.071,
+        0.084,
+        0.047,
+        0.04,
+        0.064,
+      ]
+    }
+  ]
+};
 
 import * as echarts from "echarts";
 
